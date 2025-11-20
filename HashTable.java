@@ -8,6 +8,8 @@ public class HashTable {
         mapa.put(3, "Fernando");
         mapa.put(4, "Carlos");
 
-        System.out.println("Tabla original: " + mapa);
+        mapa.entrySet().stream().sorted();
+
+        System.out.println("Ordenado: " + mapa);
     }
 }
