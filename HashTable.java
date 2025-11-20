@@ -1,4 +1,4 @@
-import java.util.HashMap;
+import java.util.*;
 import java.util.stream.*;
 
 public class HashTable {
@@ -9,11 +9,14 @@ public class HashTable {
         mapa.put(3, "Fernando");
         mapa.put(4, "Carlos");
 
-        mapa.entrySet()
-             .stream()
-             .sorted((a, b) -> a.getValue().compareTo(b.getValue()));
+        Map<Integer,String> ordenado = mapa.entrySet()
+            .stream()
+            .sorted((a, b) -> a.getValue().compareTo(b.getValue()))
+            .collect(Collectors.toMap(
+                e -> e.getKey(),
+                e -> e.getValue()
+            ));
 
-        // imprime original
-        System.out.println("Ordenado (incorrecto): " + mapa);
+        System.out.println("Ordenado: " + ordenado);
     }
 }
