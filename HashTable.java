@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.stream.*;
 
 public class HashTable {
     public static void main(String[] args) {
@@ -8,8 +9,11 @@ public class HashTable {
         mapa.put(3, "Fernando");
         mapa.put(4, "Carlos");
 
-        mapa.entrySet().stream().sorted();
+        mapa.entrySet()
+             .stream()
+             .sorted((a, b) -> a.getValue().compareTo(b.getValue()));
 
-        System.out.println("Ordenado: " + mapa);
+        // imprime original
+        System.out.println("Ordenado (incorrecto): " + mapa);
     }
 }
