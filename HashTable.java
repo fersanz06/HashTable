@@ -11,12 +11,14 @@ public class HashTable {
 
         Map<Integer,String> ordenado = mapa.entrySet()
             .stream()
-            .sorted((a, b) -> a.getValue().compareTo(b.getValue()))
+            .sorted(Map.Entry.comparingByValue())
             .collect(Collectors.toMap(
-                e -> e.getKey(),
-                e -> e.getValue()
+                e -> 1, // <- ERROR: todas las llaves son 1
+                e -> e.getValue(),
+                (a, b) -> a,
+                LinkedHashMap::new
             ));
 
-        System.out.println("Ordenado: " + ordenado);
+        System.out.println("Ordenado (incorrecto): " + ordenado);
     }
 }
