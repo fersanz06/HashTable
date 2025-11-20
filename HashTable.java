@@ -3,22 +3,27 @@ import java.util.stream.*;
 
 public class HashTable {
     public static void main(String[] args) {
+
         HashMap<Integer, String> mapa = new HashMap<>();
         mapa.put(1, "Luis");
         mapa.put(2, "Andrea");
         mapa.put(3, "Fernando");
         mapa.put(4, "Carlos");
 
-        Map<Integer,String> ordenado = mapa.entrySet()
+        System.out.println("Tabla original:");
+        System.out.println(mapa);
+
+        Map<Integer, String> ordenado = mapa.entrySet()
             .stream()
-            .sorted(Map.Entry.comparingByValue())
+            .sorted(Map.Entry.comparingByValue()) // se ordena por nombre
             .collect(Collectors.toMap(
-                e -> 1, // <- ERROR: todas las llaves son 1
-                e -> e.getValue(),
+                Map.Entry::getKey,
+                Map.Entry::getValue,
                 (a, b) -> a,
-                LinkedHashMap::new
+                LinkedHashMap::new   // mantiene orden
             ));
 
-        System.out.println("Ordenado (incorrecto): " + ordenado);
+        System.out.println("\nTabla ordenada por nombre:");
+        System.out.println(ordenado);
     }
 }
